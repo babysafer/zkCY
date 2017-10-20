@@ -1,0 +1,79 @@
+body {
+    /*background-color: #13a3f1;*/
+    /*background-image: url("zcontrol.jpg");*/
+    background-image: url("../img/background.png");
+    width: 100%;
+    height: auto;
+    background-size: 100%;
+}
+
+.main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 300px;
+    margin-top: -150px;
+    margin-left: -150px;
+
+}
+
+form {
+    vertical-align: middle;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+}
+
+/*TODO h2居中，颜色白色*/
+h2,h3 {
+    /*font-family: Ubuntu;*/
+    color: white;
+    text-align: center;
+}
+
+
+ /*todo placerholder 亮蓝色*/
+/*填入的时候背景是黄颜色的*/
+input {
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    height: 20px;
+    padding-left: 2px;
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 2px solid white;
+
+}
+
+/*todo 四外框不要了*/
+button {
+    width: 300px;
+    height: 30px;
+    display: block;
+    margin: 0 auto 20px;
+    background-color: white;
+    border: 1px transparent solid;
+    color: #295B5C;
+    font-size: 16px;
+}
+
+
+.hyperlink {
+    text-align: center;
+}
+
+.hyperlink a {
+    color: white;
+}
+
+/*todo want write*/
+.footer {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zcontrol-login</title>
+    <!--<link rel="stylesheet" href="{{ url_for('static',filename='css/login.css') }}">-->
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+
+    <div class="main">
+<!--{#        <img src="zcontrol.jpg" alt="zcontrol">#}-->
+        <img src="../static/img/zcontrol.jpg" alt="zcontrol">
+        <h2>Welcome to Zcontrol</h2>
+        <h3>please login</h3>
+        <form action="" method="post" class="form">
+            <input class="input" type="text" value="" placeholder="username" name="user_name">
+            <input class="input" type="password" value="" placeholder="password" name="passwd">
+            <button type="submit">login</button>
+        </form>
+        <p class="hyperlink">
+            <a href="{{ url_for('create_account') }}">create account</a>
+        </p>
+    </div>
+    <div class="footer">Teamshub Co. Ltd</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.logo {
+    width: 97px;
+}
+
+body {
+    /*background: #f3f3f3;*/
+    background-image: url("../img/background.png");
+    width: 100%;
+    height: auto;
+    background-size: 100%;
+}
+
+.main {
+    background: #fff;
+    width: 730px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
