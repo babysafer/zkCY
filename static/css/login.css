@@ -27,7 +27,6 @@ img {
     height: 120px;
 }
 
-/*TODO h2居中，颜色白色*/
 h2,h3 {
     /*font-family: Ubuntu;*/
     color: white;
@@ -35,8 +34,6 @@ h2,h3 {
 }
 
 
- /*todo placerholder 亮蓝色*/
-/*填入的时候背景是黄颜色的*/
 input {
     display: block;
     margin: 20px auto;
@@ -49,7 +46,6 @@ input {
 
 }
 
-/*todo 四外框不要了*/
 button {
     width: 300px;
     height: 30px;
@@ -70,7 +66,6 @@ button {
     color: white;
 }
 
-/*todo want write*/
 .footer {
     position: fixed;
     right: 10px;

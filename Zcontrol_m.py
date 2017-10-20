@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import config
 from werkzeug.security import check_password_hash
 from decorators import login_required
-import zk_cluster
+from zk_cluster import ZkServer
 
 # todo title旁边的小图标
 
@@ -26,6 +26,7 @@ def login():
         # elif PASSWD != config.user_info.get(USER_NAME_F):
         elif check_password_hash(config.user_info.get(USER_NAME_F), PASSWD):
             session['user_id'] = USER_NAME_F
+            session.permanent = True
             return redirect(url_for('home'))
         else:
             return u'密码不正确'
@@ -38,14 +39,13 @@ def create_account():
 
 
 # 主界面,login_required是before required 钩子函数
-@app.route('/home')
+@app.route('/home',methods=['GET'])
 @login_required
 def home():
-    # todo 待思考
-    # f=[[]]
-    # for key in config.conn_str.keys():
-    #     ZkServer(config.conn_str[key]).giveFront()
-    return render_template('home.html')
+    zk_ser_res ={}
+    for key in config.conn_str.keys():
+        zk_ser_res[key]=ZkServer(config.conn_str[key]).giveFront()
+    return render_template('home.html',rs=zk_ser_res)
 
 # 注销功能
 @app.route('/logout')

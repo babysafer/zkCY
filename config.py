@@ -6,6 +6,9 @@ DEBUG = True
 #session 使用的secret key
 SECRET_KEY = os.urandom(24)
 
+# socket超时时间
+socket_time_out = 2
+
 # 登录用户名密码,01,Paas@2017,02,Paas@2018
 user_info = {
     'paas01': 'pbkdf2:sha256:50000$UWhZQLmY$a5d82d19c3a3069e300a3fbdd75ef0eba87f54e44a7d76b179eef258e216d049',
@@ -14,8 +17,8 @@ user_info = {
 
 # 目标zookeeper地址
 conn_str = {
-    '北京测试': '172.21.11.63:8501,172.21.11.64:8501,172.21.11.65:8501'
+    u'北京测试': '172.21.11.63:8501,172.21.11.64:8501,172.21.11.65:8501',
+    u'北京测试2' : '172.21.11.63:8541,172.21.11.64:8541,172.21.11.65:8541',
 }
 
-# socket超时时间
-socket_time_out = 2
+# todo 如何在程序在程序中改变conn_str字典并写入文本文件
