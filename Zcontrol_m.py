@@ -3,13 +3,12 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import config
 from werkzeug.security import check_password_hash
 from decorators import login_required
-from zk_cluster import ZkServer
+from zk_cluster import ZkServer, common
 
 # todo title旁边的小图标
 
 app = Flask(__name__)
 app.config.from_object(config)
-
 
 
 # 登录界面
@@ -39,13 +38,15 @@ def create_account():
 
 
 # 主界面,login_required是before required 钩子函数
-@app.route('/home',methods=['GET'])
+@app.route('/home', methods=['GET'])
 @login_required
 def home():
     zk_ser_res ={}
     for key in config.conn_str.keys():
         zk_ser_res[key]=ZkServer(config.conn_str[key]).giveFront()
-    return render_template('home.html',rs=zk_ser_res)
+    # zk_ser_res = common('172.21.11.66', 11001, 'stat')
+    return render_template('home.html', rs=zk_ser_res)
+
 
 # 注销功能
 @app.route('/logout')
@@ -53,12 +54,23 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
+
 # 一个集群详细界面
+# todo mntr该页显示其余超链接
 @app.route('/detail')
 @login_required
 def deteil():
+    centxt = '172.29.11.66:11001,172.21.11.67:11001,172.21.11.73:11001'
+
     return render_template('detail.html')
 
+# 视图函数传参，来哪个四字命令我就给你哪个
+@app.route('/detail/<cmd>',methods=['GET','POST'])
+def cmd(cmd):
+    if request.method == 'GET':
+        return 00
+    else:
+        return u'请传入四字命令'
 
 # 添加集群界面
 @app.route('/addCluster')

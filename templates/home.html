@@ -3,35 +3,29 @@
 {% block title %}home_page{% endblock %}
 
 {% block main %}
-{#    <a href="">{{ rs }}</a>#}
-{#<ul class="question-list-group">#}
-{#    {% for zk_ser_re in rs.keys() %}#}
-{#        <li class="question-li">#}
-{#            <div class="avatar-group">#}
-{#                <img src="{{ url_for('static',filename='images/logo.png') }}" alt="" class="avatar">#}
-{#            </div>#}
-{#            <div class="question-group">#}
-{#                <p class="question-title"><a >{{ zk_ser_re }}</a></p>#}
-{#                <p class="question-content">{{ zk_ser_res[zk_ser_re] }}</p>#}
-{#                <div class="question-info">#}
-{#                    <span class="question-author">{{ question.author.username }}</span>#}
-{#                    <span class="question-time">{{ question.createtime }}</span>#}
-{#                </div>#}
-{#            </div>#}
-{#        </li>#}
-{#    {% endfor %}#}
-{#</ul>#}
+    {#    <a href="">{{ rs }}</a>#}
+    {#<ul class="question-list-group">#}
+    {#    {% for zk_ser_re in rs.keys() %}#}
+    {#        <li class="question-li">#}
+    {#            <div class="avatar-group">#}
+    {#                <img src="{{ url_for('static',filename='images/logo.png') }}" alt="" class="avatar">#}
+    {#            </div>#}
+    {#            <div class="question-group">#}
+    {#                <p class="question-title"><a >{{ zk_ser_re }}</a></p>#}
+    {#                <p class="question-content">{{ zk_ser_res[zk_ser_re] }}</p>#}
+    {#                <div class="question-info">#}
+    {#                    <span class="question-author">{{ question.author.username }}</span>#}
+    {#                    <span class="question-time">{{ question.createtime }}</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </li>#}
+    {#    {% endfor %}#}
+    {#</ul>#}
     <ul>
-{#    {{ for cluster_name,cluster_rs in k_ser_res.trems() }}#}
-
-{#{% for cluster_name,cluster_rs in rs.items() %}#}
-{#    <p>{{ cluster_name }}:{{ cluster_rs }}</p>#}
-{#{% endfor %}#}
-
-    {% for cluster_name,cluster_rs in rs.items() %}
-    <p>{{ cluster_name }}:{{ cluster_rs }}</p>
-{% endfor %}
+        {% for cluster_name,cluster_rs in rs.items() %}
+{#            <p>{{ cluster_name }}:{{ cluster_rs[0] }}:{{ cluster_rs[1] }}:{{ cluster_rs[2] }}</p>#}
+            <p>{{ cluster_name }}:{% for k in cluster_rs %}{{ k }}{% endfor %}</p>
+        {% endfor %}
     </ul>
-
 
 {% endblock %}

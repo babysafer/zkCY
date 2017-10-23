@@ -5,4 +5,9 @@ from werkzeug.security import generate_password_hash
 i=generate_password_hash('Paas@2017')
 print i
 
-print ZkServer('172.21.11.63:8501,172.21.11.64:8501,172.21.11.65:8501').giveFront()
+centxt = '172.29.11.66:11001,172.21.11.67:11001,172.21.11.73:11001'
+cent_tmp = centxt.split(',')
+print cent_tmp
+
+ip= cent_tmp[0].split(':')
+print ip

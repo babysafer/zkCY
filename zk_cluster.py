@@ -3,6 +3,7 @@ import socket
 import config
 
 
+# 给首页展示用的类
 class ZkServer(object):
     def __init__(self, conn_str):
         self.addrs = conn_str.split(',')
@@ -16,15 +17,15 @@ class ZkServer(object):
             s.connect((ip, port))
             s.send('ruok')
             return s.recv(1024)
-        except socket.timeout :
+        except socket.timeout:
             return 'net_disConn'
-        except socket.error :
+        except socket.error:
             return 'IamDown'
 
     # 获取该节点的角色和连接数
     def srvrRole(self, ip, port):
         try:
-            socket.setdefaulttimeout(2)
+            socket.setdefaulttimeout(config.socket_time_out)
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
             s.connect((ip, port))
             s.send('srvr')
@@ -35,9 +36,9 @@ class ZkServer(object):
                 roleFlag = 'L'
             conns = result.split('\n')[4].split(':')[1]
             return roleFlag + ' |' + conns
-        except socket.timeout :
+        except socket.timeout:
             return 'net_disConn'
-        except socket.error :
+        except socket.error:
             return 'IamDown'
 
     # 给前台展示
@@ -50,5 +51,32 @@ class ZkServer(object):
             result.append(first + ' | ' + second)
         return result
 
-# if __name__ == '__main__':
-#     print ZkServer('172.29.11.63:8501,172.21.11.64:8501,172.21.11.65:8501').giveFront()
+        # 产生详细信息的类
+        # class ZkServerDetail(object):
+        #     def __init__(self, conn_str,cmd):
+        #         self.addrs = conn_str.split(',')
+        #         self.cmd = cmd
+
+        # 随意接收四字命令
+
+
+def common(ip_port, cmd):
+    ip=ip_port.split(':')[0]
+    port=int(ip_port.split(':')[1])
+    try:
+        socket.setdefaulttimeout(config.socket_time_out)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        s.connect((ip, port))
+        s.send(cmd)
+        result = s.recv(1024)
+    except socket.timeout:
+        return 'net_disConn'
+    except socket.error:
+        return 'IamDown'
+    return result
+
+
+if __name__ == '__main__':
+    #     print ZkServer('172.29.11.63:8501,172.21.11.64:8501,172.21.11.65:8501').giveFront()
+    # print ZkServerDetail('172.29.11.66:11001,172.21.11.67:11001,172.21.11.73:11001', 'stat').common()
+    print common('172.21.11.66:11001', 'mntr')
