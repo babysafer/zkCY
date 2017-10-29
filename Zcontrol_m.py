@@ -10,6 +10,9 @@ from zk_cluster import ZkServer, common
 app = Flask(__name__)
 app.config.from_object(config)
 
+@app.route('/readme')
+def readme():
+    return render_template('readme.html')
 
 # 登录界面
 @app.route('/', methods=['GET', 'POST'])
@@ -30,23 +33,20 @@ def login():
         else:
             return u'密码不正确'
 
-
 # 注册界面
 @app.route('/create_account')
 def create_account():
     return render_template('create_account.html')
 
-
 # 主界面,login_required是before required 钩子函数
-@app.route('/home', methods=['GET'])
+@app.route('/home')
 @login_required
 def home():
-    zk_ser_res ={}
-    for key in config.conn_str.keys():
-        zk_ser_res[key]=ZkServer(config.conn_str[key]).giveFront()
-    # zk_ser_res = common('172.21.11.66', 11001, 'stat')
-    return render_template('home.html', rs=zk_ser_res)
-
+    zkResult ={}
+    for zkClusterName in config.conn_str.keys():
+        zkResult[zkClusterName]=ZkServer(config.conn_str[zkClusterName]).giveFront()
+    # zkResult = {u'\u5317\u4eac\u6d4b\u8bd52': ['imok | F | 14', 'imok | L | 1', 'imok | F | 1'], u'\u5317\u4eac\u6d4b\u8bd5': ['imok | F | 1', 'imok | F | 1', 'imok | L | 1']}
+    return render_template('home.html', zkResult=zkResult)
 
 # 注销功能
 @app.route('/logout')
@@ -84,3 +84,6 @@ def addCluster():
 
 if __name__ == '__main__':
     app.run()
+
+
+

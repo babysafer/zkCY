@@ -1,28 +1,28 @@
-.logo {
-    width: 97px;
-}
-
 body {
-    /*background: #f3f3f3;*/
+    /*background-image: url("/image/background.jpg");*/
+    /*background-color: #25575A;*/
+    /*color: white;*/
     background-image: url("../img/background.png");
     width: 100%;
     height: auto;
     background-size: 100%;
 }
 
-.main {
-    background: #fff;
-    width: 730px;
-    margin: 0 auto;
-    overflow: hidden;
+.navbar {
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    color: white;
 }
 
-.page-title {
-    text-align: center;
+.navbar-default .navbar-brand {
+    color: white;
 }
 
 .footer {
     position: fixed;
     right: 10px;
     bottom: 10px;
+    color: white;
 }

@@ -1,60 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Zcontrol-{% block title %}{% endblock %}</title>
-{#        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->#}
-    <link rel="stylesheet"  href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
-{#     导入jquery的css,因为bootstrap依赖jquery#}
+    {#        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->#}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    {#     导入jquery的css,因为bootstrap依赖jquery#}
     <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-{#        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
+    {#        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
     <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
     {% block head %}{% endblock %}
-
 </head>
 <body>
-<nav class="navbar navbar-default">{# 白色是inverse #}
-    <div class="container">
-        {#        <!-- Brand and toggle get grouped for better mobile display -->#}
+{#todo 集群多了，导航条跟着一直在页面上,集群信息稍微往左一点， 扁一点#}
+
+{#导航条#}
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-{#            todo 找个logo#}
-{#            <a class="navbar-brand" href="#">#}
-{#                <img class="logo" src="{{ url_for('static',filename='img/logo1.png') }}" alt="">#}
-{#            </a>#}
+            <a class="navbar-brand" href="{{ url_for('home') }}">Overall</a>
         </div>
-
-        {#        <!-- Collect the nav links, forms, and other content for toggling -->#}
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('readme') }}">ReadMe</a>
+        </div>
+        <div style="float: right">
             <ul class="nav navbar-nav">
-                <li class="active">
-{#                    <a href="{{ url_for('index') }}">首页 <span class="sr-only">(current)</span></a>#}
-                    <a href="{{ url_for('home') }}">OverAll<span class="sr-only">(current)</span></a>
+                <li>
+                    <a href="#">{{ session['user_id'] }}</a>
                 </li>
-                <li><a href="{{ url_for('addCluster') }}">添加集群</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-{#                {% if user %}#}
-                <li><a href="#">{{ session['user_id'] }}</a></li>
-                <li><a href="{{ url_for('logout') }}">退出</a></li>
+                <li>
+                    <a href="{{ url_for('logout') }}">退出</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="main">
-    {% block main %}{% endblock %}
-</div>
+
+{% block main %}{% endblock %}
+
 <div class="footer">Teamshub Co. Ltd</div>
 </body>
 </html>
-
 
 
