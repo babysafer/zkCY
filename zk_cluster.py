@@ -12,11 +12,14 @@ class ZkServer(object):
     def ruok(self, ip, port):
         # 设置socket超时时间，网络不通时的测试时间
         try:
-            socket.setdefaulttimeout(config.socket_time_out)
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+            # socket.setdefaulttimeout(config.socket_time_out)
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(config.socket_time_out)
             s.connect((ip, port))
             s.send('ruok')
-            return s.recv(1024)
+            res= s.recv(1024)
+            s.close()
+            return res
         except socket.timeout:
             return 'net_disConn'
         except socket.error:
@@ -25,17 +28,19 @@ class ZkServer(object):
     # 获取该节点的角色和连接数
     def srvrRole(self, ip, port):
         try:
-            socket.setdefaulttimeout(config.socket_time_out)
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(config.socket_time_out)
             s.connect((ip, port))
             s.send('srvr')
             result = s.recv(1024)
+            s.close()
             if 'follower' in result:
                 roleFlag = 'F'
             else:
                 roleFlag = 'L'
             conns = result.split('\n')[4].split(':')[1]
             return roleFlag + ' |' + conns
+
         except socket.timeout:
             return 'net_disConn'
         except socket.error:
@@ -64,19 +69,24 @@ def common(ip_port, cmd):
     ip=ip_port.split(':')[0]
     port=int(ip_port.split(':')[1])
     try:
-        socket.setdefaulttimeout(config.socket_time_out)
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        # socket.setdefaulttimeout(config.socket_time_out)
+        # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(config.socket_time_out)
         s.connect((ip, port))
         s.send(cmd)
         result = s.recv(1024)
+        s.close()
     except socket.timeout:
         return 'net_disConn'
     except socket.error:
         return 'IamDown'
+
     return result
 
 
 if __name__ == '__main__':
+
     #     print ZkServer('172.29.11.63:8501,172.21.11.64:8501,172.21.11.65:8501').giveFront()
     # print ZkServerDetail('172.29.11.66:11001,172.21.11.67:11001,172.21.11.73:11001', 'stat').common()
     print common('172.21.11.66:11001', 'mntr')

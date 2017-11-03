@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+        <meta charset="UTF-8">
+    <title>Zcontrol-{% block title %}{% endblock %}</title>
+{#        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->#}
+    <link rel="stylesheet"  href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+{#     导入jquery的css,因为bootstrap依赖jquery#}
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+{#        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/readme.css') }}">#}
+
+
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Overall</a>
+            </div>
+            <div style="float: right">
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="#">PaaS01</a>
+                    </li>
+                    <li>
+                     <a href="#">退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <a href="">订单后台</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <a href="/">电渠</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="/">test1</a>
+        </div>
+    </div>
+
+
+
+    <div class="footer">Teamshub Co. Ltd</div>
+</body>
+</html>
