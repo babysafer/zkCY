@@ -3,16 +3,18 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import config
 from werkzeug.security import check_password_hash
 from decorators import login_required
-from zk_cluster import ZkServer, common
+from zk_cluster import ZkServer, common, isLeader
 
 # todo title旁边的小图标
 
 app = Flask(__name__)
 app.config.from_object(config)
 
+
 @app.route('/readme')
 def readme():
     return render_template('readme.html')
+
 
 # 登录界面
 @app.route('/', methods=['GET', 'POST'])
@@ -33,20 +35,26 @@ def login():
         else:
             return u'密码不正确'
 
+
 # 注册界面
 @app.route('/create_account')
 def create_account():
     return render_template('create_account.html')
 
+
 # 主界面,login_required是before required 钩子函数
 @app.route('/home')
 @login_required
 def home():
-    zkResult ={}
+    zkResult = {}
     for zkClusterName in config.conn_str.keys():
-        zkResult[zkClusterName]=ZkServer(config.conn_str[zkClusterName]).giveFront()
+        zkResult[zkClusterName] = ZkServer(config.conn_str[zkClusterName]).giveFront()
     # zkResult = {u'\u5317\u4eac\u6d4b\u8bd52': ['imok | F | 14', 'imok | L | 1', 'imok | F | 1'], u'\u5317\u4eac\u6d4b\u8bd5': ['imok | F | 1', 'imok | F | 1', 'imok | L | 1']}
+    # for k,v in zkResult.items():
+    #     print k
+    #     print v
     return render_template('home.html', zkResult=zkResult)
+
 
 # 注销功能
 @app.route('/logout')
@@ -56,21 +64,46 @@ def logout():
 
 
 # 一个集群详细界面
-# todo mntr该页显示其余超链接
-@app.route('/detail')
+@app.route('/detail/<zkClusterName>')
 @login_required
-def deteil():
-    centxt = '172.29.11.66:11001,172.21.11.67:11001,172.21.11.73:11001'
+def detail(zkClusterName):
+    # 获取集群的conn_str然后split成'172.29.11.66:11001'的list
+    ip_port_List = config.conn_str[zkClusterName].split(',')
+    conf=''
+    for ip_port in ip_port_List:
+        if isLeader(ip_port):
+            conf = common(ip_port, 'conf')
+            mntr = common(ip_port, 'mntr')
+            dump = common(ip_port, 'dump')
+            envi = common(ip_port, 'envi')
+    if conf == '':
+        conf=mntr=dump=envi=u'集群没有leader'
+    return render_template("detail.html", conf=conf,mntr=mntr,dump=dump,envi=envi,zkClusterName=zkClusterName)
 
-    return render_template('detail.html')
+# 一个节点的详细信息
+@app.route('/<zkClusterName>/<id>')
+@login_required
+def one(zkClusterName,id):
+    ip_port_list=config.conn_str[zkClusterName].split(',')
+    Iid=int(id)
+    srvr = common(ip_port_list[Iid],'srvr')
+    conf = common(ip_port_list[Iid],'conf')
+    cons = common(ip_port_list[Iid],'cons')
+    dump = common(ip_port_list[Iid],'dump')
+    envi = common(ip_port_list[Iid],'envi')
+    stat = common(ip_port_list[Iid],'stat')
+    wchs = common(ip_port_list[Iid],'wchs')
+
+    return render_template('one.html',srvr=srvr,conf=conf,cons=cons,dump=dump,envi=envi,stat=stat,wchs=wchs,ip_port=ip_port_list[Iid])
 
 # 视图函数传参，来哪个四字命令我就给你哪个
-@app.route('/detail/<cmd>',methods=['GET','POST'])
+@app.route('/detail/<cmd>', methods=['GET', 'POST'])
 def cmd(cmd):
     if request.method == 'GET':
         return 00
     else:
         return u'请传入四字命令'
+
 
 # 添加集群界面
 @app.route('/addCluster')
@@ -84,6 +117,3 @@ def addCluster():
 
 if __name__ == '__main__':
     app.run()
-
-
-

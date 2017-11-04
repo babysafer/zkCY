@@ -1965,51 +1965,23 @@
     }</style>
 </head>
 <article class="markdown-body" id="preview" data-open-title="Hide Preview" data-closed-title="Show Preview"
-         style="padding-bottom: 572px;"><h1 id="这个项目的名字就叫zcontrol" data-source-line="1"><a class="markdownIt-Anchor"
-                                                                                           href="#这个项目的名字就叫zcontrol"></a>这个项目的名字就叫Zcontrol
-</h1>
-    <h2 id="mysql" data-source-line="3"><a class="markdownIt-Anchor" href="#mysql"></a>mysql</h2>
-    <pre data-source-line="4"><code class="hljs">mysql -uZcontrol -hrm-wz9uo781w14ct3111o<span
-            class="hljs-selector-class">.mysql</span><span class="hljs-selector-class">.rds</span><span
-            class="hljs-selector-class">.aliyuncs</span><span class="hljs-selector-class">.com</span> -P3306 -pbabysafer</code></pre>
-    <p data-source-line="6">ZooKeeper 四字命令</p>
-    <p data-source-line="8">功能描述</p>
-    <p data-source-line="10">conf</p>
-    <p data-source-line="12">输出相关服务配置的详细信息。</p>
-    <p data-source-line="14">cons</p>
-    <p data-source-line="16">列出所有连接到服务器的客户端的完全的连接 / 会话的详细信息。包括“接受 / 发送”的包数量、会话 id 、操作延迟、最后的操作执行等等信息。</p>
-    <p data-source-line="18">dump</p>
-    <p data-source-line="20">列出未经处理的会话和临时节点。</p>
-    <p data-source-line="22">envi</p>
-    <p data-source-line="24">输出关于服务环境的详细信息（区别于 conf 命令）。</p>
-    <p data-source-line="26">reqs</p>
-    <p data-source-line="28">列出未经处理的请求</p>
-    <p data-source-line="30">ruok</p>
-    <p data-source-line="32">测试服务是否处于正确状态。如果确实如此，那么服务返回“ imok ”，否则不做任何相应。</p>
-    <p data-source-line="34">stat</p>
-    <p data-source-line="36">输出关于性能和连接的客户端的列表。</p>
-    <p data-source-line="38">wchs</p>
-    <p data-source-line="40">列出服务器 watch 的详细信息。</p>
-    <p data-source-line="42">wchc</p>
-    <p data-source-line="44">通过 session 列出服务器 watch 的详细信息，它的输出是一个与 watch 相关的会话的列表。</p>
-    <p data-source-line="46">wchp</p>
-    <p data-source-line="48">通过路径列出服务器 watch 的详细信息。它输出一个与 session 相关的路径。</p>
-    <p data-source-line="53"><a href="http://www.jianshu.com/p/0fa7fcafd59a">http://www.jianshu.com/p/0fa7fcafd59a</a>
-    </p>
-    <h2 id="readmeuse" data-source-line="55"><a class="markdownIt-Anchor" href="#readmeuse"></a>readme，use</h2>
-    <h3 id="注册" data-source-line="56"><a class="markdownIt-Anchor" href="#注册"></a>注册</h3>
-    <pre data-source-line="57"><code class="hljs">不提供在线注册功能，请联系paas维护人员获取登录口令</code></pre>
-    <h3 id="overiew" data-source-line="58"><a class="markdownIt-Anchor" href="#overiew"></a>Overiew</h3>
-    <pre data-source-line="59"><code class="hljs">所有集群节点当前状态的展示界面
-集群名字    节点<span class="hljs-number">1</span>   节点<span class="hljs-number">2</span>   节点<span
-                class="hljs-number">3</span>   ······
-<span class="hljs-string">"imok | L | 7"</span>      表示该节点存活，是leader，连接数是<span class="hljs-number">17</span>
-<span class="hljs-string">"ImDown | ImDown"</span>   表示该节点异常
-<span class="hljs-string">"netDown | netDown"</span> 表示该节点网络不通等网络异常</code></pre>
-    <h3 id="集群详细界面" data-source-line="64"><a class="markdownIt-Anchor" href="#集群详细界面"></a>集群详细界面</h3>
-    <pre data-source-line="65"><code class="hljs">在Overiew页面点击集群名字，进到一个集群详细界面</code></pre>
-    <h2 id="readme-install-admin" data-source-line="66"><a class="markdownIt-Anchor" href="#readme-install-admin"></a>readme
-        ，install &amp; admin</h2>
+         style="padding-bottom: 0px;">
+    <h1 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>节点【 {{ ip_port }} 】的详细信息</h1>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>srvr</h2>
+    <pre data-source-line="4"><code class="hljs"><span class="hljs-attribute">{{ srvr }}</span></code></pre>
+    <h2 id="dump" data-source-line="5"><a class="markdownIt-Anchor" href="#dump"></a>conf</h2>
+    <pre data-source-line="6"><code class="hljs"><span class="hljs-attribute">{{ conf }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>cons</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ cons }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>dump</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ dump }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>envi</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ envi }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>stat</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ stat }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>wchs</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ wchs }}</span></code></pre>
+
 </article>
 <body></body>
 </html>

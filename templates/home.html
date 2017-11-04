@@ -12,15 +12,14 @@
     {% for zkClusterName,zkClusterRes in zkResult.items() %}
         <div class="row">
             <div class="col-md-2">
-                <a href="">{{ zkClusterName }}</a>
+                <a href="/detail/{{ zkClusterName }}">{{ zkClusterName }}</a>
             </div>
             {% for  zkClusterResOne in zkClusterRes %}
                 <div class="col-md-1">
-                    <a href="/">{{ zkClusterResOne }}</a>
+                    <a href="/{{ zkClusterName }}/{{ zkClusterRes.index(zkClusterResOne) }}">{{ zkClusterResOne }}</a>
                 </div>
             {% endfor %}
         </div>
     {% endfor %}
-
 
 {% endblock %}

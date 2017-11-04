@@ -19,11 +19,11 @@ class ZkServer(object):
             s.send('ruok')
             res= s.recv(1024)
             s.close()
-            return res
+            return res+' '
         except socket.timeout:
-            return 'net_disConn'
+            return 'netDown'
         except socket.error:
-            return 'IamDown'
+            return 'ImDown'
 
     # 获取该节点的角色和连接数
     def srvrRole(self, ip, port):
@@ -39,12 +39,12 @@ class ZkServer(object):
             else:
                 roleFlag = 'L'
             conns = result.split('\n')[4].split(':')[1]
-            return roleFlag + ' |' + conns
+            return ' '+roleFlag + ' | ' + conns
 
         except socket.timeout:
-            return 'net_disConn'
+            return 'netDown'
         except socket.error:
-            return 'IamDown'
+            return 'ImDown'
 
     # 给前台展示
     def giveFront(self):
@@ -53,7 +53,7 @@ class ZkServer(object):
             ip_port = addr.split(':')
             first = self.ruok(ip_port[0], int(ip_port[1]))
             second = self.srvrRole(ip_port[0], int(ip_port[1]))
-            result.append(first + ' | ' + second)
+            result.append(first + '|' + second)
         return result
 
         # 产生详细信息的类
@@ -66,6 +66,7 @@ class ZkServer(object):
 
 
 def common(ip_port, cmd):
+    # ip_port='172.21.11.66:11001'
     ip=ip_port.split(':')[0]
     port=int(ip_port.split(':')[1])
     try:
@@ -78,11 +79,29 @@ def common(ip_port, cmd):
         result = s.recv(1024)
         s.close()
     except socket.timeout:
-        return 'net_disConn'
+        return 'netDown'
     except socket.error:
-        return 'IamDown'
-
+        return 'ImDown'
     return result
+
+def isLeader(ip_port):
+    ip = ip_port.split(':')[0]
+    port = int(ip_port.split(':')[1])
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(config.socket_time_out)
+        s.connect((ip, port))
+        s.send('srvr')
+        result = s.recv(1024)
+        s.close()
+        if 'follower' in result:
+            return False
+        else:
+            return True
+    except socket.timeout:
+        return False
+    except socket.error:
+        return False
 
 
 if __name__ == '__main__':
