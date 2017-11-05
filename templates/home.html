@@ -11,11 +11,11 @@
     {#    zkResult = {u'\u5317\u4eac\u6d4b\u8bd52': ['imok | F | 14', 'imok | L | 1', 'imok | F | 1'], u'\u5317\u4eac\u6d4b\u8bd5': ['imok | F | 1', 'imok | F | 1', 'imok | L | 1']}#}
     {% for zkClusterName,zkClusterRes in zkResult.items() %}
         <div class="row">
-            <div class="col-md-2">
+            <div class="item-head">
                 <a href="/detail/{{ zkClusterName }}">{{ zkClusterName }}</a>
             </div>
             {% for  zkClusterResOne in zkClusterRes %}
-                <div class="col-md-1">
+            <div class="item-content">
                     <a href="/{{ zkClusterName }}/{{ zkClusterRes.index(zkClusterResOne) }}">{{ zkClusterResOne }}</a>
                 </div>
             {% endfor %}

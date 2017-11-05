@@ -23,3 +23,11 @@
     text-decoration: none;
 
 }
+
+.item-head {
+    width: 200px;
+}
+
+.item-content {
+    width: 100px;
+}
