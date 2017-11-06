@@ -1872,7 +1872,8 @@
     }
 
     .markdown-body h1 {
-        font-size: 2.25em
+        font-size: 2.25em;
+        color: rgb(85,185,192)
     }
 
     .markdown-body h2 {
@@ -1963,24 +1964,50 @@
     .markdown-body table td, .markdown-body table th {
         word-break: break-all
     }</style>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='img/zook.ico') }}" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/one.css') }}">
+     <title>Zcontrol-one</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
 </head>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Overview</a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('readme') }}">HowToUse</a>
+        </div>
+        <div style="float: right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">{{ session['user_id'] }}</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('logout') }}">退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <article class="markdown-body" id="preview" data-open-title="Hide Preview" data-closed-title="Show Preview"
          style="padding-bottom: 0px;">
     <h1 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>节点【 {{ ip_port }} 】的详细信息</h1>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>wchs</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ wchs }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>cons</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ cons }}</span></code></pre>
+    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>stat</h2>
+    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ stat }}</span></code></pre>
     <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>srvr</h2>
     <pre data-source-line="4"><code class="hljs"><span class="hljs-attribute">{{ srvr }}</span></code></pre>
     <h2 id="dump" data-source-line="5"><a class="markdownIt-Anchor" href="#dump"></a>conf</h2>
     <pre data-source-line="6"><code class="hljs"><span class="hljs-attribute">{{ conf }}</span></code></pre>
-    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>cons</h2>
-    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ cons }}</span></code></pre>
     <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>dump</h2>
     <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ dump }}</span></code></pre>
     <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>envi</h2>
     <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ envi }}</span></code></pre>
-    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>stat</h2>
-    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ stat }}</span></code></pre>
-    <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>wchs</h2>
-    <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ wchs }}</span></code></pre>
 
 </article>
 <body></body>

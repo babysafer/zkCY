@@ -1,5 +1,7 @@
-<html>
-<head>
+{% extends 'base.html' %}
+{% block title %}detail{% endblock %}
+
+{% block head %}
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css"
           integrity="sha384-B41nY7vEWuDrE9Mr+J2nBL0Liu+nl/rBXTdpQal730oTHdlrlXHzYMOhDU60cwde" crossorigin="anonymous">
@@ -1872,11 +1874,13 @@
     }
 
     .markdown-body h1 {
-        font-size: 2.25em
+        font-size: 2.25em;
+        color: rgb(85,185,192)
     }
 
     .markdown-body h2 {
-        font-size: 1.75em
+        font-size: 1.75em;
+        color: #C0C0C0
     }
 
     .markdown-body h3 {
@@ -1963,10 +1967,11 @@
     .markdown-body table td, .markdown-body table th {
         word-break: break-all
     }</style>
-</head>
+{% endblock %}
+{% block main %}
 <article class="markdown-body" id="preview" data-open-title="Hide Preview" data-closed-title="Show Preview"
          style="padding-bottom: 0px;">
-    <h1 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>这是{{ zkClusterName }}zookeeper集群的详细信息</h1>
+    <h1 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>{{ zkClusterName }}    集群的详细信息</h1>
     <h2 id="envi" data-source-line="7"><a class="markdownIt-Anchor" href="#envi"></a>mntr</h2>
     <pre data-source-line="4"><code class="hljs"><span class="hljs-attribute">{{ mntr }}</span></code></pre>
     <h2 id="dump-列出未经处理的会话和临时节点最好在leader执行" data-source-line="5"><a class="markdownIt-Anchor"
@@ -1979,5 +1984,5 @@
     <pre data-source-line="8"><code class="hljs"><span class="hljs-attribute">{{ conf }}</span></code></pre>
 
 </article>
-<body></body>
-</html>
+{% endblock %}
+

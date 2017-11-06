@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}home{% endblock %}
+{% block title %}Overview{% endblock %}
+
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static',filename='css/home.css') }}">
 {% endblock %}
@@ -12,11 +13,11 @@
     {% for zkClusterName,zkClusterRes in zkResult.items() %}
         <div class="row">
             <div class="item-head">
-                <a href="/detail/{{ zkClusterName }}">{{ zkClusterName }}</a>
+                <a href="/detail/{{ zkClusterName }}" target="_blank">{{ zkClusterName }}</a>
             </div>
             {% for  zkClusterResOne in zkClusterRes %}
             <div class="item-content">
-                    <a href="/{{ zkClusterName }}/{{ zkClusterRes.index(zkClusterResOne) }}">{{ zkClusterResOne }}</a>
+                    <a href="/{{ zkClusterName }}/{{ zkClusterRes.index(zkClusterResOne) }}" target="_blank">{{ zkClusterResOne }}</a>
                 </div>
             {% endfor %}
         </div>

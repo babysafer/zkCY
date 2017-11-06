@@ -1,0 +1,14 @@
+
+
+.navbar {
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+

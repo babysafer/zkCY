@@ -10,10 +10,12 @@
     {#        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->#}
     <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='img/zook.ico') }}" type="image/x-icon" />
     {% block head %}{% endblock %}
 </head>
+<article>{% block article %}{% endblock %}</article>
 <body>
-{#todo 集群多了，导航条跟着一直在页面上,集群信息稍微往左一点， 扁一点,长一点字展示补全#}
+{#todo 集群多了，导航条跟着一直在页面上#}
 
 {#导航条#}
 <nav class="navbar navbar-default" role="navigation">

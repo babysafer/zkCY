@@ -84,7 +84,7 @@ def common(ip_port, cmd):
         return 'ImDown'
     return result
 
-def isLeader(ip_port):
+def ifLeader(ip_port):
     ip = ip_port.split(':')[0]
     port = int(ip_port.split(':')[1])
     try:

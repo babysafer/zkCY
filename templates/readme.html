@@ -1872,23 +1872,28 @@
     }
 
     .markdown-body h1 {
-        font-size: 2.25em
+        font-size: 2.25em;
+        color: rgb(85, 185, 192)
     }
 
     .markdown-body h2 {
-        font-size: 1.75em
+        font-size: 1.75em;
+        color: rgb(85, 185, 192)
     }
 
     .markdown-body h3 {
-        font-size: 1.5em
+        font-size: 1.5em;
+        color: rgb(85, 185, 192)
     }
 
     .markdown-body h4 {
-        font-size: 1.25em
+        font-size: 1.25em;
+        color: rgb(85, 185, 192)
     }
 
     .markdown-body h5, .markdown-body h6 {
-        font-size: 1em
+        font-size: 1em;
+        color: rgb(85, 185, 192)
     }
 
     div.mermaid svg {
@@ -1963,53 +1968,73 @@
     .markdown-body table td, .markdown-body table th {
         word-break: break-all
     }</style>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='img/zook.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/one.css') }}">
+    <title>Zcontrol-one</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
 </head>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Overview</a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('readme') }}">HowToUse</a>
+        </div>
+        <div style="float: right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">{{ session['user_id'] }}</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('logout') }}">退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <article class="markdown-body" id="preview" data-open-title="Hide Preview" data-closed-title="Show Preview"
-         style="padding-bottom: 572px;"><h1 id="这个项目的名字就叫zcontrol" data-source-line="1"><a class="markdownIt-Anchor"
-                                                                                           href="#这个项目的名字就叫zcontrol"></a>这个项目的名字就叫Zcontrol
-</h1>
-    <h2 id="mysql" data-source-line="3"><a class="markdownIt-Anchor" href="#mysql"></a>mysql</h2>
-    <pre data-source-line="4"><code class="hljs">mysql -uZcontrol -hrm-wz9uo781w14ct3111o<span
-            class="hljs-selector-class">.mysql</span><span class="hljs-selector-class">.rds</span><span
-            class="hljs-selector-class">.aliyuncs</span><span class="hljs-selector-class">.com</span> -P3306 -pbabysafer</code></pre>
-    <p data-source-line="6">ZooKeeper 四字命令</p>
-    <p data-source-line="8">功能描述</p>
-    <p data-source-line="10">conf</p>
-    <p data-source-line="12">输出相关服务配置的详细信息。</p>
-    <p data-source-line="14">cons</p>
-    <p data-source-line="16">列出所有连接到服务器的客户端的完全的连接 / 会话的详细信息。包括“接受 / 发送”的包数量、会话 id 、操作延迟、最后的操作执行等等信息。</p>
-    <p data-source-line="18">dump</p>
-    <p data-source-line="20">列出未经处理的会话和临时节点。</p>
-    <p data-source-line="22">envi</p>
-    <p data-source-line="24">输出关于服务环境的详细信息（区别于 conf 命令）。</p>
-    <p data-source-line="26">reqs</p>
-    <p data-source-line="28">列出未经处理的请求</p>
-    <p data-source-line="30">ruok</p>
-    <p data-source-line="32">测试服务是否处于正确状态。如果确实如此，那么服务返回“ imok ”，否则不做任何相应。</p>
-    <p data-source-line="34">stat</p>
-    <p data-source-line="36">输出关于性能和连接的客户端的列表。</p>
-    <p data-source-line="38">wchs</p>
-    <p data-source-line="40">列出服务器 watch 的详细信息。</p>
-    <p data-source-line="42">wchc</p>
-    <p data-source-line="44">通过 session 列出服务器 watch 的详细信息，它的输出是一个与 watch 相关的会话的列表。</p>
-    <p data-source-line="46">wchp</p>
-    <p data-source-line="48">通过路径列出服务器 watch 的详细信息。它输出一个与 session 相关的路径。</p>
-    <p data-source-line="53"><a href="http://www.jianshu.com/p/0fa7fcafd59a">http://www.jianshu.com/p/0fa7fcafd59a</a>
-    </p>
-    <h2 id="readmeuse" data-source-line="55"><a class="markdownIt-Anchor" href="#readmeuse"></a>readme，use</h2>
-    <h3 id="注册" data-source-line="56"><a class="markdownIt-Anchor" href="#注册"></a>注册</h3>
-    <pre data-source-line="57"><code class="hljs">不提供在线注册功能，请联系paas维护人员获取登录口令</code></pre>
-    <h3 id="overiew" data-source-line="58"><a class="markdownIt-Anchor" href="#overiew"></a>Overiew</h3>
-    <pre data-source-line="59"><code class="hljs">所有集群节点当前状态的展示界面
+         style="padding-bottom: 0px;"><h3 id="注册" data-source-line="1"><a class="markdownIt-Anchor" href="#注册"></a>注册
+</h3>
+    <pre data-source-line="2"><code class="hljs">不提供在线注册功能，请联系paas维护人员获取登录口令</code></pre>
+    <h3 id="overiew" data-source-line="3"><a class="markdownIt-Anchor" href="#overiew"></a>Overiew</h3>
+    <pre data-source-line="4"><code class="hljs">所有集群节点当前状态的展示界面
 集群名字    节点<span class="hljs-number">1</span>   节点<span class="hljs-number">2</span>   节点<span
                 class="hljs-number">3</span>   ······
 <span class="hljs-string">"imok | L | 7"</span>      表示该节点存活，是leader，连接数是<span class="hljs-number">17</span>
 <span class="hljs-string">"ImDown | ImDown"</span>   表示该节点异常
 <span class="hljs-string">"netDown | netDown"</span> 表示该节点网络不通等网络异常</code></pre>
-    <h3 id="集群详细界面" data-source-line="64"><a class="markdownIt-Anchor" href="#集群详细界面"></a>集群详细界面</h3>
-    <pre data-source-line="65"><code class="hljs">在Overiew页面点击集群名字，进到一个集群详细界面</code></pre>
-    <h2 id="readme-install-admin" data-source-line="66"><a class="markdownIt-Anchor" href="#readme-install-admin"></a>readme
-        ，install &amp; admin</h2>
+    <h3 id="集群详细界面" data-source-line="9"><a class="markdownIt-Anchor" href="#集群详细界面"></a>集群详细界面</h3>
+    <pre data-source-line="10"><code class="hljs">在Overiew页面点击集群名字，进到一个集群详细界面</code></pre>
+    <h3 id="详细页面zk信息解释" data-source-line="11"><a class="markdownIt-Anchor" href="#详细页面zk信息解释"></a>详细页面zk信息解释</h3>
+    <h4 id="wchs" data-source-line="12"><a class="markdownIt-Anchor" href="#wchs"></a>wchs</h4>
+    <pre data-source-line="13"><code class="hljs">列出服务器watches的简洁信息：连接总数、watching节点总数和watches总数</code></pre>
+    <h4 id="cons" data-source-line="14"><a class="markdownIt-Anchor" href="#cons"></a>cons</h4>
+    <pre data-source-line="15"><code class="hljs">所有连接到这台服务器的客户端连接/会话的详细信息。包括“接受/发送”的包数量、session <span
+            class="hljs-built_in">id</span> 、操作延迟、最后的操作执行等信息</code></pre>
+    <h4 id="stat" data-source-line="16"><a class="markdownIt-Anchor" href="#stat"></a>stat</h4>
+    <pre data-source-line="17"><code class="hljs">输出服务器的详细信息：接收<span class="hljs-regexp">/发送包数量、连接数、模式（leader/</span>follower）、节点总数、延迟。 所有客户端的列表</code></pre>
+    <h4 id="srvr" data-source-line="18"><a class="markdownIt-Anchor" href="#srvr"></a>srvr</h4>
+    <pre data-source-line="19"><code class="hljs">输出服务器的详细信息。zk版本、接收<span
+            class="hljs-regexp">/发送包数量、连接数、模式（leader/</span>follower）、节点总数</code></pre>
+    <h4 id="conf" data-source-line="20"><a class="markdownIt-Anchor" href="#conf"></a>conf</h4>
+    <pre data-source-line="21"><code class="hljs">相关服务配置的详细信息。比如端口、zk数据及日志配置路径、最大连接数，session超时时间、serverId等</code></pre>
+    <h4 id="dump" data-source-line="22"><a class="markdownIt-Anchor" href="#dump"></a>dump</h4>
+    <pre data-source-line="23"><code class="hljs">列出未经处理的会话和临时节点（只在<span class="hljs-built_in">leader</span>上有效）</code></pre>
+    <h4 id="envi" data-source-line="24"><a class="markdownIt-Anchor" href="#envi"></a>envi</h4>
+    <pre data-source-line="25"><code class="hljs">输出关于服务器的环境详细信息（不同于<span class="hljs-keyword">conf</span>命令），比如host.name、java.<span
+            class="hljs-keyword">version</span>、java.home、user.<span class="hljs-keyword">dir</span>=/data/zookeeper-3.4.6/bin之类信息</code></pre>
+    <h4 id="mntr" data-source-line="26"><a class="markdownIt-Anchor" href="#mntr"></a>mntr</h4>
+    <pre data-source-line="27"><code class="hljs">列出集群的健康状态。包括“接受<span
+            class="hljs-regexp">/发送”的包数量、操作延迟、当前服务模式（leader/</span>follower）、节点总数、watch总数、临时节点总数</code></pre>
+    <h4 id="wchc" data-source-line="28"><a class="markdownIt-Anchor" href="#wchc"></a>wchc</h4>
+    <pre data-source-line="29"><code class="hljs">通过session分组，列出watch的所有节点，它的输出是一个与 watch 相关的会话的节点列表。如果watches数量很大的话，将会产生很大的开销，会影响性能，小心使用</code></pre>
+    <h4 id="wchp" data-source-line="30"><a class="markdownIt-Anchor" href="#wchp"></a>wchp</h4>
+    <pre data-source-line="31"><code class="hljs">通过路径分组，列出所有的 watch 的session <span class="hljs-built_in">id</span>信息。它输出一个与 session 相关的路径。如果watches数量很大的话，将会产生很大的开销，会影响性能，小心使用</code></pre>
+    <h4 id="srst" data-source-line="32"><a class="markdownIt-Anchor" href="#srst"></a>srst</h4>
+    <pre data-source-line="33"><code class="hljs">重置服务器的统计信息</code></pre>
 </article>
 <body></body>
 </html>

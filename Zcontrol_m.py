@@ -3,9 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import config
 from werkzeug.security import check_password_hash
 from decorators import login_required
-from zk_cluster import ZkServer, common, isLeader
-
-# todo title旁边的小图标
+from zk_cluster import ZkServer, common, ifLeader
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -69,43 +67,37 @@ def logout():
 def detail(zkClusterName):
     # 获取集群的conn_str然后split成'172.29.11.66:11001'的list
     ip_port_List = config.conn_str[zkClusterName].split(',')
-    conf=''
+    conf = ''
     for ip_port in ip_port_List:
-        if isLeader(ip_port):
+        if ifLeader(ip_port):
             conf = common(ip_port, 'conf')
             mntr = common(ip_port, 'mntr')
             dump = common(ip_port, 'dump')
             envi = common(ip_port, 'envi')
     if conf == '':
-        conf=mntr=dump=envi=u'集群没有leader'
-    return render_template("detail.html", conf=conf,mntr=mntr,dump=dump,envi=envi,zkClusterName=zkClusterName)
+        conf = mntr = dump = envi = u'集群没有leader'
+    return render_template("detail.html", conf=conf, mntr=mntr, dump=dump, envi=envi, zkClusterName=zkClusterName)
+
 
 # 一个节点的详细信息
 @app.route('/<zkClusterName>/<id>')
 @login_required
-def one(zkClusterName,id):
-    ip_port_list=config.conn_str[zkClusterName].split(',')
-    Iid=int(id)
-    srvr = common(ip_port_list[Iid],'srvr')
-    conf = common(ip_port_list[Iid],'conf')
-    cons = common(ip_port_list[Iid],'cons')
-    dump = common(ip_port_list[Iid],'dump')
-    envi = common(ip_port_list[Iid],'envi')
-    stat = common(ip_port_list[Iid],'stat')
-    wchs = common(ip_port_list[Iid],'wchs')
+def one(zkClusterName, id):
+    ip_port_list = config.conn_str[zkClusterName].split(',')
+    Iid = int(id)
+    srvr = common(ip_port_list[Iid], 'srvr')
+    conf = common(ip_port_list[Iid], 'conf')
+    cons = common(ip_port_list[Iid], 'cons')
+    dump = common(ip_port_list[Iid], 'dump')
+    envi = common(ip_port_list[Iid], 'envi')
+    stat = common(ip_port_list[Iid], 'stat')
+    wchs = common(ip_port_list[Iid], 'wchs')
 
-    return render_template('one.html',srvr=srvr,conf=conf,cons=cons,dump=dump,envi=envi,stat=stat,wchs=wchs,ip_port=ip_port_list[Iid])
-
-# 视图函数传参，来哪个四字命令我就给你哪个
-@app.route('/detail/<cmd>', methods=['GET', 'POST'])
-def cmd(cmd):
-    if request.method == 'GET':
-        return 00
-    else:
-        return u'请传入四字命令'
+    return render_template('one.html', srvr=srvr, conf=conf, cons=cons, dump=dump, envi=envi, stat=stat, wchs=wchs,
+                           ip_port=ip_port_list[Iid])
 
 
-# 添加集群界面
+# 添加集群界面,下一个版本迭代吧
 @app.route('/addCluster')
 @login_required
 def addCluster():
