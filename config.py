@@ -6,12 +6,13 @@ DEBUG = True
 #session 使用的secret key
 SECRET_KEY = os.urandom(24)
 
-# socket超时时间
+# 到节点探测端口的socket超时时间
 socket_time_out = 2
 
 # 登录用户名密码,01,Paas@2017,02,Paas@2018
 user_info = {
     'paas01': 'pbkdf2:sha256:50000$UWhZQLmY$a5d82d19c3a3069e300a3fbdd75ef0eba87f54e44a7d76b179eef258e216d049',
+    'paas03':'pbkdf2:sha256:50000$F4R4psl2$f64242d5a9d20909b2c46a1a89be5f7c696ef3e21ed81c832bf92a59e65103d5',
     'paas02': 'pbkdf2:sha256:50000$FFGUSrnd$08a79f44fdc10b53d203512bddcd0ae8e4d2d14e45ea5e2e4fc10173f0817077'
 }
 
