@@ -106,6 +106,8 @@ def addCluster():
     # print config.conn_str
     return render_template('addCluster.html')
 
+# todo 添加把配置文件显示到前台的界面
+
 
 if __name__ == '__main__':
     app.run()
