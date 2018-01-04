@@ -47,10 +47,10 @@ def home():
     zkResult = {}
     for zkClusterName in config.conn_str.keys():
         zkResult[zkClusterName] = ZkServer(config.conn_str[zkClusterName]).giveFront()
+
     # zkResult = {u'\u5317\u4eac\u6d4b\u8bd52': ['imok | F | 14', 'imok | L | 1', 'imok | F | 1'], u'\u5317\u4eac\u6d4b\u8bd5': ['imok | F | 1', 'imok | F | 1', 'imok | L | 1']}
-    # for k,v in zkResult.items():
-    #     print k
-    #     print v
+    # for key, value in zkResult.iteritems():
+    #     print key, ':', value
     return render_template('home.html', zkResult=zkResult)
 
 

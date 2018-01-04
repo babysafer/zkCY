@@ -10,14 +10,14 @@
 {% block main %}
 
     {#    zkResult = {u'\u5317\u4eac\u6d4b\u8bd52': ['imok | F | 14', 'imok | L | 1', 'imok | F | 1'], u'\u5317\u4eac\u6d4b\u8bd5': ['imok | F | 1', 'imok | F | 1', 'imok | L | 1']}#}
-    {% for zkClusterName,zkClusterRes in zkResult.items() %}
+    {% for zkClusterName,zkClusterRes in zkResult.iteritems() %}
         <div class="row">
             <div class="item-head">
                 <a href="/detail/{{ zkClusterName }}" target="_blank">{{ zkClusterName }}</a>
             </div>
-            {% for  zkClusterResOne in zkClusterRes %}
-            <div class="item-content">
-                    <a href="/{{ zkClusterName }}/{{ zkClusterRes.index(zkClusterResOne) }}" target="_blank">{{ zkClusterResOne }}</a>
+            {% for foo in range(0,zkClusterRes|length) %}
+                <div class="item-content">
+                    <a href="/{{ zkClusterName }}/{{ foo }}" target="_blank">{{ zkClusterRes[foo] }}</a>
                 </div>
             {% endfor %}
         </div>
