@@ -11,3 +11,4 @@ print cent_tmp
 
 ip= cent_tmp[0].split(':')
 print ip
+
